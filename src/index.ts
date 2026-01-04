@@ -11,17 +11,17 @@ const app = new Elysia()
   .listen(ENV.PORT);
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname || "localhost"}:${app.server?.port}`
+  `🦊 Elysia is running in ${ENV.ENVIRONMENT} mode at http://${app.server?.hostname || "localhost"}:${app.server?.port}/`
 );
 
 process.on("SIGINT", async () => {
   console.log("🦊 Shutting down...");
-  app.server?.stop();
+  await app.server?.stop();
   process.exit(0);
 });
 
-process.on("SIGTERM", () => {
+process.on("SIGTERM", async () => {
   console.log("🦊 Received SIGTERM, shutting down...");
-  app.server?.stop();
+  await app.server?.stop();
   process.exit(0);
 });
