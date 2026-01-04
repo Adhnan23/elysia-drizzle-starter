@@ -1,0 +1,14 @@
+services:
+  backend:
+    build:
+      context: .
+      args:
+        - PORT=${PORT}
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./src/db:/app/src/db
+    command: ["bun", "run", "dev"]

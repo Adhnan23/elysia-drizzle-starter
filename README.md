@@ -8,6 +8,7 @@ Created by [Karots](https://github.com/Adhnan23)
 ![Elysia](https://img.shields.io/badge/Elysia-black?style=for-the-badge&logo=elysia)
 ![Drizzle](https://img.shields.io/badge/Drizzle-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black)
 ![Zod](https://img.shields.io/badge/Zod-3068b7?style=for-the-badge&logo=zod&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 ---
 
@@ -20,6 +21,7 @@ Created by [Karots](https://github.com/Adhnan23)
 - [Getting Started](#-getting-started)
 - [Database Management](#-database-management)
 - [Environment Configuration](#-environment-configuration)
+- [Docker Setup](#-docker-setup)
 - [Standardized Responses](#-standardized-responses)
 - [License](#-license)
 - [Author](#-author)
@@ -145,6 +147,46 @@ The app will refuse to start if required `.env` variables are missing or invalid
 - `ENVIRONMENT`: `development` | `production` | `test`
 - `DB_FILE_NAME`: Database path (LibSQL/SQLite)
 - `PORT`: Server port (automatically transformed to a number)
+
+---
+
+## 🐳 Docker Setup
+
+You can run the backend using **Docker** and **Docker Compose** for easy development.
+
+### 1️⃣ Prerequisites
+
+- [Docker](https://www.docker.com/get-started) installed
+- [Docker Compose](https://docs.docker.com/compose/install/) installed
+- `.env` file configured (`PORT`, `DB_FILE_NAME`, `ENVIRONMENT`)
+
+---
+
+### 2️⃣ Development with Live Reload
+
+```bash
+# Build and start the container
+docker-compose up --build
+```
+
+- Server runs in **watch mode** (`bun run --watch src/index.ts`)
+- SQLite database persists in `./src/db`
+- Access the API at: `http://localhost:${PORT}`
+- Stop the server: `Ctrl+C` (or `docker-compose down`)
+
+> The container automatically reads your `.env` file for PORT and DB_FILE_NAME.
+
+---
+
+### 3️⃣ Running in Detached Mode
+
+```bash
+docker-compose up --build -d
+docker-compose logs -f backend
+```
+
+- `-d` runs the container in the background
+- `logs -f` shows real-time output
 
 ---
 
