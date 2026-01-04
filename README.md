@@ -1,5 +1,7 @@
 # 🦊 B.E.D Stack Template (Bun + Elysia + Drizzle)
+
 ### High-performance, strictly typed backend boilerplate.
+
 Created by [Karots](https://github.com/Adhnan23)
 
 ![Bun](https://img.shields.io/badge/Bun-000?style=for-the-badge&logo=bun&logoColor=white)
@@ -10,6 +12,7 @@ Created by [Karots](https://github.com/Adhnan23)
 ---
 
 ## 📑 Table of Contents
+
 - [Features](#-features)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
@@ -26,9 +29,9 @@ Created by [Karots](https://github.com/Adhnan23)
 - **🏗️ Clean Architecture:** Separation of concerns (Routes, Controllers, Middlewares).
 - **🗃️ Modern ORM:** Drizzle ORM with LibSQL (SQLite) for effortless DB management.
 - **🔌 Pre-configured Plugins:** - Global Error Handling (handles Validation & Drizzle errors automatically).
-    - CORS (configured for flexibility).
-    - Static Plugin (serves the `/public` folder).
-    - Zod-based Environment validation.
+  - CORS (configured for flexibility).
+  - Static Plugin (serves the `/public` folder).
+  - Zod-based Environment validation.
 
 ---
 
@@ -82,12 +85,13 @@ bun run dev
 
 ## 🗄️ Database Management
 
-| Script | Action |
-| --- | --- |
-| `bun run db:gen` | Generate SQL migration files |
-| `bun run db:mig` | Apply migrations to the database |
-| `bun run db:push` | Fast-sync schema to DB (No migrations) |
-| `bun run db:studio` | Open a local GUI to view your data |
+| Script              | Action                                 |
+| ------------------- | -------------------------------------- |
+| `bun run db:gen`    | Generate SQL migration files           |
+| `bun run db:mig`    | Apply migrations to the database       |
+| `bun run db:push`   | Fast-sync schema to DB (No migrations) |
+| `bun run db:studio` | Open a local GUI to view your data     |
+
 ---
 
 ## 🛡️ Environment Configuration
@@ -95,9 +99,9 @@ bun run dev
 The app will refuse to start if `.env` variables are missing or invalid.
 **Schema (`src/utils/env.ts`):**
 
-* `ENVIRONMENT`: `development` | `production` | `test`
-* `DB_FILE_NAME`: Database path (LibSQL/SQLite)
-* `PORT`: Server port (automatically transformed to a number)
+- `ENVIRONMENT`: `development` | `production` | `test`
+- `DB_FILE_NAME`: Database path (LibSQL/SQLite)
+- `PORT`: Server port (automatically transformed to a number)
 
 ---
 
@@ -129,3 +133,14 @@ All API responses follow a consistent JSON structure via the `respond` utility:
 ## 📜 License
 
 This project is [MIT](https://www.google.com/search?q=LICENSE) licensed.
+
+---
+
+## 👨‍💻 Author
+
+**Karots**
+
+- Portfolio: [yourportfolio.com](https://karots.lk)
+- GitHub: [@Adhnan23](https://github.com/Adhnan23)
+
+If you find this template useful, feel free to give it a ⭐!
