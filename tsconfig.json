@@ -21,9 +21,14 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@routes": ["./src/routes"],
+      "@controllers": ["./src/controllers"],
+      "@db": ["./src/db"],
+      "@queries": ["./src/db/queries"],
+      "@schemas": ["./src/db/schemas"],
+      "@middlewares": ["./src/middlewares"],
+      "@validators": ["./src/middlewares/validators"],
+      "@utils": ["./src/utils"]
     }
   }
 }

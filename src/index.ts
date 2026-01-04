@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
-import { ENV } from "./utils/env";
-import { Cors, errorHandler, Static } from "./middlewares/";
-import ApiRoute from "./routes";
+import { ENV } from "@utils";
+import { Cors, errorHandler, Static } from "@middlewares";
+import ApiRoute from "@routes";
 
 const app = new Elysia()
   .use(Cors)
@@ -11,5 +11,17 @@ const app = new Elysia()
   .listen(ENV.PORT);
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  `🦊 Elysia is running at ${app.server?.hostname || "localhost"}:${app.server?.port}`
 );
+
+process.on("SIGINT", async () => {
+  console.log("🦊 Shutting down...");
+  app.server?.stop();
+  process.exit(0);
+});
+
+process.on("SIGTERM", () => {
+  console.log("🦊 Received SIGTERM, shutting down...");
+  app.server?.stop();
+  process.exit(0);
+});

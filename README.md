@@ -14,11 +14,15 @@ Created by [Karots](https://github.com/Adhnan23)
 ## 📑 Table of Contents
 
 - [Features](#-features)
+- [Who is this for?](#-who-is-this-for)
+- [Quick Example](#-quick-example)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
 - [Database Management](#-database-management)
 - [Environment Configuration](#-environment-configuration)
 - [Standardized Responses](#-standardized-responses)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
@@ -26,12 +30,51 @@ Created by [Karots](https://github.com/Adhnan23)
 
 - **⚡ Blazing Fast:** Built on the Bun runtime for maximum speed.
 - **🛡️ Type Safe:** End-to-end type safety using Zod v4 and Elysia.
-- **🏗️ Clean Architecture:** Separation of concerns (Routes, Controllers, Middlewares).
-- **🗃️ Modern ORM:** Drizzle ORM with LibSQL (SQLite) for effortless DB management.
-- **🔌 Pre-configured Plugins:** - Global Error Handling (handles Validation & Drizzle errors automatically).
-  - CORS (configured for flexibility).
-  - Static Plugin (serves the `/public` folder).
-  - Zod-based Environment validation.
+- **🏗️ Clean Architecture:** Separation of concerns for Routes, Controllers, and Middlewares.
+- **🗃️ Modern ORM:** Drizzle ORM with LibSQL (SQLite) for effortless database management.
+- **🔌 Pre-configured Plugins:**
+
+  - Global Error Handling (automatically handles Validation & Drizzle errors)
+  - CORS (configured for flexibility)
+  - Static Plugin (serves the `/public` folder)
+  - Zod-based environment validation
+
+---
+
+## 🎯 Who is this for?
+
+- Developers building **type-safe Bun APIs**
+- Small to medium backend projects
+- Projects that prioritize **speed, correctness, and clean architecture**
+- Anyone who wants a ready-to-go boilerplate for **REST APIs**
+
+---
+
+## ⚡ Quick Example
+
+Here’s a prebuilt `/health` API route using the `respond` utility:
+
+```ts
+import db from "@/db";
+import respond from "@/utils/respond";
+import Elysia from "elysia";
+
+const ApiRoute = new Elysia({ prefix: "/api" }).get("/health", async () => {
+  // Lightweight DB check; will throw if unavailable
+  await db.run("SELECT 1");
+
+  return respond(true, "Service is healthy", {
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+export default ApiRoute;
+```
+
+> ✅ Works out-of-the-box with the global error handler
+> ✅ Returns standardized JSON responses
+> ✅ Can be used for **liveness probes** in production
 
 ---
 
@@ -48,20 +91,19 @@ src/
 ├── routes/         # Route definitions and versioning
 ├── utils/          # Helpers (Zod Env parser, API response formatter)
 └── index.ts        # Application entry point
-
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Installation
+### 1. Install dependencies
 
 ```bash
 bun install
 ```
 
-### 2. Set up Environment
+### 2. Set up environment
 
 ```bash
 cp .env.example .env
@@ -69,13 +111,13 @@ cp .env.example .env
 
 Ensure your `DB_FILE_NAME` is set (Default: `file:./src/db/database.db`).
 
-### 3. Initialize Database
+### 3. Initialize database
 
 ```bash
 bun run db:push
 ```
 
-### 4. Run Development
+### 4. Run development server
 
 ```bash
 bun run dev
@@ -96,7 +138,8 @@ bun run dev
 
 ## 🛡️ Environment Configuration
 
-The app will refuse to start if `.env` variables are missing or invalid.
+The app will refuse to start if required `.env` variables are missing or invalid.
+
 **Schema (`src/utils/env.ts`):**
 
 - `ENVIRONMENT`: `development` | `production` | `test`
@@ -109,7 +152,7 @@ The app will refuse to start if `.env` variables are missing or invalid.
 
 All API responses follow a consistent JSON structure via the `respond` utility:
 
-```typescript
+```ts
 // Success Example
 {
   "success": true,
@@ -125,14 +168,13 @@ All API responses follow a consistent JSON structure via the `respond` utility:
   "data": null,
   "error": ["email: Invalid email format"]
 }
-
 ```
 
 ---
 
 ## 📜 License
 
-This project is [MIT](https://www.google.com/search?q=LICENSE) licensed.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
@@ -140,7 +182,7 @@ This project is [MIT](https://www.google.com/search?q=LICENSE) licensed.
 
 **Karots**
 
-- Portfolio: [yourportfolio.com](https://karots.lk)
+- Portfolio: [karots.lk](https://karots.lk)
 - GitHub: [@Adhnan23](https://github.com/Adhnan23)
 
-If you find this template useful, feel free to give it a ⭐!
+> If you find this template useful, feel free to give it a ⭐!
